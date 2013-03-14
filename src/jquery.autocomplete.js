@@ -43,6 +43,7 @@
         loadingClass: 'acLoading',
         resultsClass: 'acResults',
         selectClass: 'acSelect',
+        listClass: 'acList',
         queryParamName: 'q',
         extraParams: {},
         remoteDataType: false,
@@ -821,7 +822,7 @@
     $.Autocompleter.prototype.createItemFromResult = function(result) {
         var self = this;
         var $li = $('<li/>');
-        $li.text(this.showResult(result.value, result.data));
+        $li.html(this.showResult(result.value, result.data));
         $li.data({value: result.value, data: result.data})
             .click(function() {
                 self.selectItem($li);
@@ -866,7 +867,7 @@
                 }
             }
 
-            this.dom.$results.html($ul).show();
+            this.dom.$results.html($ul.addClass(this.options.listClass)).show();
 
             // Always recalculate position since window size or
             // input element location may have changed.
